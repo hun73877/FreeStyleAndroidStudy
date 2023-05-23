@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout style="@style/linearVertical">
+
+        <FrameLayout
+            android:id="@+id/rvContainer"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+
+        <LinearLayout
+            android:layout_marginBottom="32dp"
+            android:paddingHorizontal="24dp"
+            style="@style/linearHorizontal">
+
+            <Button
+                android:id="@+id/decBtn"
+                android:text="-"
+                android:layout_weight="1"
+                style="@style/plainButton"/>
+
+            <Space
+                android:layout_marginHorizontal="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/incBtn"
+                android:text="+"
+                android:layout_weight="1"
+                style="@style/plainButton"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

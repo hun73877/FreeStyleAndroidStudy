@@ -25,4 +25,12 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="plainButton">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/pretendard_m</item>
+    </style>
+
 </resources>

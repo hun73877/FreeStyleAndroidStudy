@@ -13,9 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Code Style Review"
-include ':core'
-include ':feature'
 include ':core:common'
+include ':core:font'
 include ':feature:freerecyclerview'
 include ':app'
-include ':core:font'

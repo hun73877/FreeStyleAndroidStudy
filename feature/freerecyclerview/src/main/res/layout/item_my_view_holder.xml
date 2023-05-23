@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:paddingHorizontal="12dp"
+        style="@style/linearHorizontal">
+
+        <TextView
+            tools:text="text"
+            android:id="@+id/tv"
+            android:layout_weight="1"
+            android:paddingEnd="12dp"
+            style="@style/pretendardM"/>
+
+        <Button
+            android:id="@+id/rmBtn"
+            android:text="remove"
+            style="@style/plainButton"/>
+
+    </LinearLayout>
+
+</layout>

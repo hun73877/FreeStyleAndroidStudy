@@ -22,7 +22,5 @@ abstract class BaseActivity<T : ViewDataBinding>(
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutResourceId)
         binding.initView()
-        // lifecycleScope
-        // Job(), SuperVisorJob() 차이 조사하기
     }
 }

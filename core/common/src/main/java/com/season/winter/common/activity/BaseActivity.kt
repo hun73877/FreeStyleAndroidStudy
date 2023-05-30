@@ -1,50 +1,28 @@
 package com.season.winter.common.activity
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.season.winter.common.extention.coroutine.cancelIfActive
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import androidx.lifecycle.lifecycleScope
 
 abstract class BaseActivity<T : ViewDataBinding>(
     private val layoutResourceId: Int
 ): AppCompatActivity() {
 
-    val TAG by lazy { this::class.simpleName.toString() }
+    protected val tag = this::class.java.simpleName.toString()
 
-    private var viewDataBinding: T? = null
-    val binding
-        get() = viewDataBinding!!
+    lateinit var binding: T
 
-    protected val baseUiCoroutine by lazy { CoroutineScope(SupervisorJob() + Dispatchers.Main) }
+    protected abstract fun T.initView()
 
-    protected var onBackPressed: (() -> Unit)? = null
-
-    private val callback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() { onBackButtonPressed() }
-    }
-
-    protected abstract fun initStartView()
-    protected abstract fun T.initAfterView()
-    open fun onBackButtonPressed() { }
+    protected val coroutine = lifecycleScope
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)
-
-        initStartView()
-        this.onBackPressedDispatcher.addCallback(this, callback)
-        binding.initAfterView()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        baseUiCoroutine.cancelIfActive()
-        viewDataBinding = null
+        binding = DataBindingUtil.setContentView(this, layoutResourceId)
+        binding.initView()
+        // lifecycleScope
+        // Job(), SuperVisorJob() 차이 조사하기
     }
 }

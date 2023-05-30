@@ -1,21 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout style="@style/linearVertical">
+    <data>
 
-        <FrameLayout
-            android:id="@+id/rvContainer"
+        <import type="androidx.recyclerview.widget.LinearLayoutManager" />
+        <import type="androidx.recyclerview.widget.RecyclerView.LayoutManager" />
+
+        <import type="com.season.winter.freerecyclerview.adapter.MyTextAdapter" />
+        <import type="com.season.winter.common.util.LayoutManagerType" />
+
+        <variable
+            name="fragment"
+            type="com.season.winter.freerecyclerview.fragment.FreeStyleRecyclerViewFragment" />
+
+        <variable
+            name="adapter"
+            type="MyTextAdapter"/>
+
+        <variable
+            name="layoutManager"
+            type="LayoutManager" />
+
+        <variable
+            name="layoutType"
+            type="LayoutManagerType"/>
+
+        <variable
+            name="lastType"
+            type="LayoutManagerType"/>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            tools:listitem="@layout/item_my_text_view_holder"
+            app:layoutManager="@{layoutManager}"
+            app:adapter="@{adapter}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
 
         <LinearLayout
-            android:layout_marginBottom="32dp"
-            android:paddingHorizontal="24dp"
-            style="@style/linearHorizontal">
+            android:layout_marginBottom="12dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp">
 
             <Button
-                android:id="@+id/decBtn"
+                android:onClick="@{() -> fragment.changeLayoutManager(layoutType.Linear)}"
+                android:text="@string/change_list"
+                android:layout_weight="1"
+                android:backgroundTint="@color/gray"
+                style="@style/plainButton"/>
+
+            <Button
+                android:onClick="@{() -> fragment.changeLayoutManager(layoutType.Grid)}"
+                android:text="@string/change_grid"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="4dp"
+                android:backgroundTint="@color/black"
+                style="@style/plainButton"/>
+
+            <Button
+                android:onClick="@{() -> fragment.changeLayoutManager(layoutType.Staggered)}"
+                android:text="@string/change_staggered"
+                android:layout_weight="1"
+                android:backgroundTint="@color/purple_200"
+                style="@style/plainButton"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp">
+
+            <Button
+                android:onClick="@{() -> adapter.removeLast()}"
                 android:text="-"
                 android:layout_weight="1"
                 style="@style/plainButton"/>
@@ -26,12 +99,21 @@
                 android:layout_height="wrap_content"/>
 
             <Button
-                android:id="@+id/incBtn"
                 android:text="+"
+                android:onClick="@{() -> adapter.add()}"
                 android:layout_weight="1"
                 style="@style/plainButton"/>
 
         </LinearLayout>
+
+        <Button
+            android:text="reset"
+            android:onClick="@{() -> fragment.resetData()}"
+            android:backgroundTint="@color/teal_700"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="32dp"
+            android:layout_marginHorizontal="24dp"
+            style="@style/plainButton"/>
 
     </LinearLayout>
 

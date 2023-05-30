@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FreeRecyclerView</string>
+
+    <string name="change_list">change\nlist</string>
+    <string name="change_grid">change\ngrid</string>
+    <string name="change_staggered">change\nstaggered</string>
+
 </resources>

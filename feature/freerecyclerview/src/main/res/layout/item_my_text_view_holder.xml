@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewHolder"
+            type="com.season.winter.freerecyclerview.viewholder.MyTextViewHolder"/>
+
+        <variable
+            name="index"
+            type="String" />
+
+        <variable
+            name="text"
+            type="String" />
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <TextView
+            tools:text="text"
+            android:text="@{text}"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            style="@style/pretendardM"/>
+
+        <Button
+            android:layout_gravity="center_vertical"
+            tools:text="remove"
+            android:layout_width="match_parent"
+            android:onClick="@{() -> viewHolder.onClickRemove()}"
+            android:text="@{`remove ` + index}"
+            style="@style/plainButton"/>
+
+    </LinearLayout>
+
+</layout>

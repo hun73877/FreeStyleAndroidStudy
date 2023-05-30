@@ -10,10 +10,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 rootProject.name = "Code Style Review"
 include ':core:common'
-include ':core:font'
+include ':core:resources'
 include ':feature:freerecyclerview'
 include ':app'
+include ':core:dummydata'

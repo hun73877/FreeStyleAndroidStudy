@@ -14,7 +14,7 @@
 
         <variable
             name="fragment"
-            type="com.season.winter.freerecyclerview.fragment.FreeStyleRecyclerViewFragment" />
+            type="com.season.winter.freerecyclerview.fragment.freeStyleRecyclerView.FreeStyleRecyclerViewFragment" />
 
         <variable
             name="adapter"
@@ -100,7 +100,7 @@
 
             <Button
                 android:text="+"
-                android:onClick="@{() -> adapter.add()}"
+                android:onClick="@{() -> fragment.add()}"
                 android:layout_weight="1"
                 style="@style/plainButton"/>
 
@@ -108,7 +108,7 @@
 
         <Button
             android:text="reset"
-            android:onClick="@{() -> fragment.resetData()}"
+            android:onClick="@{() -> fragment.resetNewRandomList()}"
             android:backgroundTint="@color/teal_700"
             android:layout_width="match_parent"
             android:layout_marginBottom="32dp"

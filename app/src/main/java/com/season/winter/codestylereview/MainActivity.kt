@@ -5,7 +5,7 @@ import com.season.winter.common.activity.BaseActivity
 import com.season.winter.common.extention.activity.onBackPressedCallback
 import com.season.winter.common.extention.fragmentActivity.currentFragment
 import com.season.winter.common.extention.fragmentActivity.startFragment
-import com.season.winter.freerecyclerview.fragment.FreeStyleRecyclerViewFragment
+import com.season.winter.freerecyclerview.fragment.freeStyleRecyclerView.FreeStyleRecyclerViewFragment
 
 class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 

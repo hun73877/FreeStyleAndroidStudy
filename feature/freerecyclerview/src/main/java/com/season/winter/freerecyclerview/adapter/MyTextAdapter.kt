@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.season.winter.freerecyclerview.viewholder.MyTextViewHolder
 import androidx.recyclerview.widget.ListAdapter
-import com.season.winter.dummydata.generator.MixedDummyGenerator
 import com.season.winter.dummydata.model.MixedDummyData
 import com.season.winter.dummydata.model.MixedType
 import com.season.winter.freerecyclerview.diffCallback.MixedDummyDiffCallback
@@ -15,7 +14,6 @@ import com.season.winter.freerecyclerview.viewholder.base.BaseMyViewHolder
 
 class MyTextAdapter: ListAdapter<MixedDummyData, RecyclerView.ViewHolder>(MixedDummyDiffCallback()) {
 
-    var dummyGenerator: MixedDummyGenerator? = null
     var onAdded: (() -> Unit)? = null
 
     override fun getItemCount(): Int = currentList.size
@@ -40,15 +38,13 @@ class MyTextAdapter: ListAdapter<MixedDummyData, RecyclerView.ViewHolder>(MixedD
             holder.onClickRemove = { index -> remove(index) }
     }
 
-    fun initData(data: List<MixedDummyData>) {
-        submitList(data)
-        onAdded?.invoke()
+    fun initData(list: List<MixedDummyData>) {
+        submitList(list)
     }
 
-    fun add() = currentList.toMutableList().run {
-        add(dummyGenerator?.getRandomData())
+    fun addLast(data: MixedDummyData) = currentList.toMutableList().run {
+        add(data)
         submitList(this)
-        onAdded?.invoke()
     }
 
     fun removeLast() = currentList.toMutableList().run {
@@ -66,6 +62,15 @@ class MyTextAdapter: ListAdapter<MixedDummyData, RecyclerView.ViewHolder>(MixedD
         } catch (e: ArrayIndexOutOfBoundsException) {
             Log.e("TAG", "removeData: e: $e", )
         }
+    }
+
+    override fun onCurrentListChanged(
+        previousList: MutableList<MixedDummyData>,
+        currentList: MutableList<MixedDummyData>
+    ) {
+        super.onCurrentListChanged(previousList, currentList)
+        if (previousList != currentList)
+            onAdded?.invoke()
     }
 }
 

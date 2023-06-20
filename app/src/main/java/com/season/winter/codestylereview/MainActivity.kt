@@ -6,7 +6,9 @@ import com.season.winter.common.extention.activity.onBackPressedCallback
 import com.season.winter.common.extention.fragmentActivity.currentFragment
 import com.season.winter.common.extention.fragmentActivity.startFragment
 import com.season.winter.freerecyclerview.fragment.freeStyleRecyclerView.FreeStyleRecyclerViewFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun ActivityMainBinding.initView() {
